@@ -1,0 +1,46 @@
+# calculadora_financeira.py
+def menu():
+    print("=== CALCULADORA FINANCEIRA ===")
+    print("1. Juros Simples")
+    print("2. Juros Compostos")
+    print("3. IMC")
+    print("4. Sair")
+    
+def juros_simples(capital, taxa, tempo):
+    return capital * (1 + taxa * tempo)
+
+def imc(peso, altura):
+    return peso / (altura ** 2)
+
+# MAIN
+while True:
+    menu()
+    op = int(input("Escolha: "))
+    
+    if op == 1:
+        C = float(input("Capital (R$): "))
+        i = float(input("Taxa (%): ")) / 100
+        t = float(input("Tempo (meses): "))
+        print(f"Juros Simples: R$ {juros_simples(C,i,t):.2f}")
+    
+    elif op == 2:
+        C = float(input("Capital (R$): "))
+        i = float(input("Taxa (%): ")) / 100
+        t = int(input("Tempo (anos): "))
+        M = C * ((1 + i) ** t)
+        print(f"Juros Compostos: R$ {M:.2f}")
+    
+    elif op == 3:
+        peso = float(input("Peso (kg): "))
+        altura = float(input("Altura (m): "))
+        resultado = imc(peso, altura)
+        print(f"IMC: {resultado:.1f}")
+        if resultado < 18.5:
+            print("🏃 Abaixo do peso")
+        elif resultado < 25:
+            print("✅ Peso normal")
+        else:
+            print("⚠️ Acima do peso")
+    
+    else:
+        break
