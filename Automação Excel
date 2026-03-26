@@ -1,0 +1,34 @@
+' Relatorio_Automatico.bas (VBA Excel)
+Sub GerarRelatorioVendas()
+    
+    Dim ws As Worksheet
+    Set ws = ActiveSheet
+    
+    ' Limpa relatório anterior
+    ws.Range("D1:F20").Clear
+    
+    ' Cabeçalho
+    ws.Range("D1").Value = "RELATÓRIO DE VENDAS"
+    ws.Range("D1").Font.Bold = True
+    ws.Range("D1").Font.Size = 14
+    
+    ' Calcula totais
+    total_vendas = Application.WorksheetFunction.Sum(ws.Range("C2:C100"))
+    media_vendas = Application.WorksheetFunction.Average(ws.Range("C2:C100"))
+    
+    ' Resultados
+    ws.Range("D3").Value = "Total Vendas:"
+    ws.Range("E3").Value = total_vendas
+    ws.Range("D4").Value = "Média Vendas:"
+    ws.Range("E4").Value = media_vendas
+    
+    ' Formatação
+    ws.Range("E3:E4").NumberFormat = "R$ #,##0.00"
+    ws.Columns("D:F").AutoFit
+    
+    MsgBox "✅ Relatório gerado com sucesso!" & vbCrLf & _
+           "Total: R$ " & Format(total_vendas, "#,##0.00")
+           
+End Sub
+
+' Como usar: Alt+F11 > Inserir > Módulo > Colar código > F5
